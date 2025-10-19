@@ -1,0 +1,781 @@
+import { useState, useEffect } from "react";
+import { FaGift, FaHeart, FaEnvelope, FaCandyCane, FaSpa, FaStar, FaTimes } from "react-icons/fa";
+import { GiPartyPopper } from "react-icons/gi";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function App() {
+  const birthday = new Date("2025-10-19T22:59:00");
+  const [timeLeft, setTimeLeft] = useState({});
+  const [showSurprise, setShowSurprise] = useState(false);
+  const [showGifts, setShowGifts] = useState(false);
+  const [confetti, setConfetti] = useState(false);
+  const [fireworks, setFireworks] = useState([]);
+  const [showFlowers, setShowFlowers] = useState(false);
+  const [showLoveLetter, setShowLoveLetter] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date();
+      const diff = birthday - now;
+
+      if (diff <= 0) {
+        clearInterval(timer);
+        setShowSurprise(true);
+        setConfetti(true);
+        startFireworks();
+        setTimeout(() => setConfetti(false), 5000);
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        setTimeLeft({ days, hours, minutes, seconds });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const startFireworks = () => {
+    const newFireworks = Array.from({ length: 4 }, (_, i) => ({
+      id: Date.now() + i,
+      x: Math.random() * 80 + 10,
+      y: Math.random() * 60 + 20,
+      color: getRandomColor(),
+      size: Math.random() * 2 + 1,
+      particles: Array.from({ length: 40 }, (_, j) => ({
+        id: j,
+        angle: (j / 40) * 360,
+        distance: 0
+      }))
+    }));
+    setFireworks(newFireworks);
+
+    const interval = setInterval(() => {
+      setFireworks(prev => [
+        ...prev.slice(-6),
+        {
+          id: Date.now(),
+          x: Math.random() * 80 + 10,
+          y: Math.random() * 60 + 20,
+          color: getRandomColor(),
+          size: Math.random() * 2 + 1,
+          particles: Array.from({ length: 40 }, (_, j) => ({
+            id: j,
+            angle: (j / 40) * 360,
+            distance: 0
+          }))
+        }
+      ]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  };
+
+  const getRandomColor = () => {
+    const colors = [
+      "#FF6B6B", "#4ECDC4", "#45B7D1", "#FFEAA7", 
+      "#DDA0DD", "#F7DC6F", "#85C1E9", "#FF9F43"
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
+  const openGifts = () => {
+    setShowGifts(true);
+    setConfetti(true);
+    startFireworks();
+    setTimeout(() => setConfetti(false), 3000);
+  };
+
+  const openFlowers = () => {
+    setShowFlowers(true);
+  };
+
+  const openLoveLetter = () => {
+    setShowLoveLetter(true);
+  };
+
+  // Beautiful flower bouquet images
+  const flowerImage = [
+    "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+  ];
+
+  // Firework Component
+  const Firework = ({ firework }) => (
+    <motion.div
+      className="absolute pointer-events-none"
+      style={{
+        left: `${firework.x}%`,
+        top: `${firework.y}%`,
+      }}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      <motion.div
+        className="absolute w-3 h-3 rounded-full"
+        style={{
+          backgroundColor: firework.color,
+          filter: 'brightness(1.2)',
+        }}
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 2, 0] }}
+        transition={{ duration: 0.6 }}
+      />
+      
+      <motion.div
+        className="absolute w-8 h-8 rounded-full opacity-30"
+        style={{
+          backgroundColor: firework.color,
+        }}
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1.5, 0] }}
+        transition={{ duration: 0.9 }}
+      />
+
+      {firework.particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full"
+          style={{
+            backgroundColor: firework.color,
+            width: firework.size,
+            height: firework.size,
+          }}
+          initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+          animate={{
+            x: Math.cos((particle.angle * Math.PI) / 180) * 60,
+            y: Math.sin((particle.angle * Math.PI) / 180) * 60,
+            opacity: 0,
+            scale: 0,
+          }}
+          transition={{
+            duration: 1.2 + Math.random() * 0.3,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+    </motion.div>
+  );
+
+  // Countdown Page
+  if (!showSurprise) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 flex flex-col items-center justify-center text-white p-6 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute text-yellow-200 text-opacity-30"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            >
+              <FaStar size={20} />
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          className="text-6xl mb-6 text-yellow-300"
+        >
+          <GiPartyPopper />
+        </motion.div>
+
+        <motion.h1 
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-4xl md:text-6xl font-bold text-center mb-6 drop-shadow-lg"
+        >
+          🎂 Birthday Countdown 🎉
+        </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="bg-white bg-opacity-20 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white border-opacity-30 max-w-md w-full"
+        >
+          <p className="text-xl text-center mb-6 font-semibold">
+            Your special day is coming soon! 💖
+          </p>
+
+          <div className="grid grid-cols-4 gap-4 mb-6">
+            {Object.entries(timeLeft).map(([unit, value]) => (
+              <div key={unit} className="text-center">
+                <div className="bg-white bg-opacity-30 rounded-lg p-3">
+                  <motion.span
+                    key={value}
+                    initial={{ scale: 1.5 }}
+                    animate={{ scale: 1 }}
+                    className="text-3xl font-bold block"
+                  >
+                    {value ?? 0}
+                  </motion.span>
+                </div>
+                <span className="text-sm uppercase mt-2 block">
+                  {unit}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-lg font-medium">
+            Counting down to October 19, 2025 ⏰
+          </p>
+        </motion.div>
+
+        <motion.div
+          animate={{
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+          }}
+          className="mt-8 text-lg flex items-center gap-2"
+        >
+          <FaHeart className="text-red-300" />
+          <span>Made with love by yours truly</span>
+          <FaHeart className="text-red-300" />
+        </motion.div>
+      </div>
+    );
+  }
+
+  // Surprise Page
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-rose-400 via-red-400 to-pink-500 flex flex-col items-center justify-center text-white p-6 relative overflow-hidden">
+      
+      {/* Flowers Overlay with Real Photos */}
+      <AnimatePresence>
+        {showFlowers && (
+          <motion.div
+            className="absolute inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-white bg-opacity-10 backdrop-blur-2xl rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden"
+              initial={{ scale: 0, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0, y: 50 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            >
+              {/* Close button - CLEARLY VISIBLE */}
+              <motion.button
+                onClick={() => setShowFlowers(false)}
+                className="absolute top-4 right-4 text-white text-2xl hover:text-red-300 transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
+                whileHover={{ scale: 1.2, backgroundColor: "#ef4444" }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <FaTimes />
+              </motion.button>
+
+              <div className="text-center mb-6">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">
+                  💐 For My Beautiful Girlfriend 💐
+                </h2>
+                <p className="text-xl md:text-2xl text-white/90 mb-2">
+                  These flowers are just a small reflection of how beautiful you are
+                </p>
+              </div>
+
+              {/* Main Flower Bouquet */}
+              <motion.div
+                className="relative mb-6 rounded-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <img 
+                  src={flowerImage[0]}
+                  alt="Beautiful Flower Bouquet"
+                  className="w-full h-64 md:h-96 object-cover rounded-2xl shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl" />
+                <motion.div
+                  className="absolute bottom-4 left-4 right-4 text-center"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <p className="text-white text-lg md:text-xl font-semibold drop-shadow-lg">
+                    "Every petal reminds me of your beauty" 🌸
+                  </p>
+                </motion.div>
+              </motion.div>
+
+              {/* Romantic Message */}
+              <motion.div
+                className="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
+                <p className="text-center text-lg md:text-xl text-white leading-relaxed italic">
+                  "Just like these beautiful flowers, you bring color and happiness into my life. 
+                  Every moment with you is like a blooming garden full of love and joy. 
+                  Happy Birthday to the most beautiful flower in my life! 💖"
+                </p>
+                <motion.p
+                  className="text-center text-xl font-semibold mt-4 text-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2 }}
+                >
+                  Forever Yours, Kasun 🌹
+                </motion.p>
+              </motion.div>
+
+              {/* Floating Hearts */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {[...Array(10)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute text-red-300"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      y: [0, -20, 0],
+                      x: [0, Math.random() * 10 - 5, 0],
+                      rotate: [0, 180, 360],
+                    }}
+                    transition={{
+                      duration: 3 + Math.random() * 2,
+                      repeat: Infinity,
+                      delay: Math.random() * 2,
+                    }}
+                  >
+                    <FaHeart size={20 + Math.random() * 10} />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Love Letter Overlay - FIXED CLOSE BUTTON */}
+      <AnimatePresence>
+        {showLoveLetter && (
+          <motion.div
+            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-amber-50 bg-opacity-95 backdrop-blur-xl rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl"
+              initial={{ scale: 0, y: 50, rotate: -5 }}
+              animate={{ scale: 1, y: 0, rotate: 0 }}
+              exit={{ scale: 0, y: 50 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            >
+              {/* Close button - CLEARLY VISIBLE AND PROMINENT */}
+              <motion.button
+                onClick={() => setShowLoveLetter(false)}
+                className="absolute top-4 right-4 text-white text-2xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
+                whileHover={{ 
+                  scale: 1.2, 
+                  backgroundColor: "#ef4444",
+                  rotate: 90
+                }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: 0.3, type: "spring" }}
+              >
+                <FaTimes />
+              </motion.button>
+
+              {/* Love Letter Header */}
+              <div className="text-center mb-6">
+                <motion.div
+                  className="text-rose-600 text-4xl mb-2"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  💌
+                </motion.div>
+                <h2 className="text-3xl md:text-4xl font-bold text-rose-800 mb-2 font-serif">
+                  To My Dearest Love
+                </h2>
+                <p className="text-rose-600 text-lg">On Your Special Day</p>
+              </div>
+
+              {/* Love Letter Content */}
+              <motion.div
+                className="bg-white rounded-2xl p-6 shadow-inner border border-rose-200 relative"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                {/* Handwritten style text */}
+                <div className="space-y-4 text-gray-800 leading-relaxed font-serif">
+                  <motion.p
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.7 }}
+                    className="text-lg"
+                  >
+                    My Dearest,
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.9 }}
+                    className="text-lg"
+                  >
+                    Happy Birthday to the most amazing person in my life! Today, as we celebrate your special day, 
+                    I want you to know how much you mean to me.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.1 }}
+                    className="text-lg"
+                  >
+                    From the moment I met you, my life has been filled with so much joy and happiness. 
+                    Your smile brightens my darkest days, your laughter is my favorite melody, 
+                    and your love is the greatest gift I've ever received.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.3 }}
+                    className="text-lg"
+                  >
+                    You are not just my girlfriend - you are my best friend, my confidant, and my soulmate. 
+                    Every day with you feels like a beautiful dream that I never want to wake up from.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="text-lg"
+                  >
+                    On this special day, I wish you all the happiness in the world. May your life be filled with 
+                    love, laughter, and beautiful moments. May all your dreams come true, and may we continue 
+                    to create wonderful memories together.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.7 }}
+                    className="text-lg"
+                  >
+                    Thank you for being you - beautiful inside and out. Thank you for loving me and for 
+                    being the incredible person that you are.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.9 }}
+                    className="text-lg font-semibold text-rose-700"
+                  >
+                    Forever and always, my love will be with you.
+                  </motion.p>
+                </div>
+
+                {/* Signature */}
+                <motion.div
+                  className="mt-8 text-right"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.1 }}
+                >
+                  <p className="text-xl font-bold text-rose-800 font-cursive">With all my love,</p>
+                  <p className="text-2xl font-bold text-rose-900 mt-2 font-cursive">Kasun</p>
+                  <p className="text-rose-600 mt-1">💖 Your Loving Boyfriend 💖</p>
+                </motion.div>
+              </motion.div>
+
+              {/* Floating Hearts in Letter */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute text-rose-300 opacity-40"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      y: [0, -10, 0],
+                      x: [0, Math.random() * 5 - 2.5, 0],
+                      rotate: [0, 180, 360],
+                    }}
+                    transition={{
+                      duration: 3 + Math.random() * 2,
+                      repeat: Infinity,
+                      delay: Math.random() * 2,
+                    }}
+                  >
+                    <FaHeart size={12 + Math.random() * 8} />
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Close Instruction Text */}
+              <motion.div
+                className="text-center mt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.5 }}
+              >
+                <p className="text-rose-600 text-sm font-semibold">
+                  Click the ❌ button to close this letter
+                </p>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Fireworks Display */}
+      <div className="absolute inset-0 pointer-events-none">
+        <AnimatePresence>
+          {fireworks.map((firework) => (
+            <Firework key={firework.id} firework={firework} />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Rising Rockets */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute bottom-0 w-1 h-4 bg-yellow-300 rounded-t-full"
+            style={{
+              left: `${15 + i * 35}%`,
+            }}
+            initial={{ y: 100, opacity: 1 }}
+            animate={{ y: -80, opacity: 0 }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              delay: i * 2,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Confetti Effect */}
+      <AnimatePresence>
+        {confetti && (
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute text-2xl"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                }}
+                initial={{
+                  y: -50,
+                  x: 0,
+                  rotate: 0,
+                  opacity: 1,
+                }}
+                animate={{
+                  y: "100vh",
+                  x: Math.random() * 200 - 100,
+                  rotate: 360,
+                  opacity: 0,
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 2,
+                  ease: "easeOut",
+                }}
+              >
+                <GiPartyPopper 
+                  className={i % 3 === 0 ? "text-yellow-300" : i % 3 === 1 ? "text-pink-300" : "text-blue-300"}
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Hearts */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-red-200 text-opacity-40"
+            style={{
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, Math.random() * 20 - 10, 0],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          >
+            <FaHeart size={24} />
+          </motion.div>
+        ))}
+      </div>
+
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        className="text-center mb-8"
+      >
+        <motion.h1 
+          className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg flex items-center justify-center gap-3"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <FaHeart className="text-red-300" />
+          Happy Birthday, My Love! 💖
+          <FaHeart className="text-red-300" />
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-xl md:text-2xl mb-8 font-light bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-6 py-3 inline-block"
+        >
+          You make my world brighter every single day ✨
+        </motion.p>
+      </motion.div>
+
+      <div className="max-w-4xl w-full">
+        {!showGifts ? (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="text-center cursor-pointer"
+            onClick={openGifts}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              animate={{
+                y: [0, -20, 0],
+                rotate: [0, 5, -5, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+              }}
+              className="bg-gradient-to-br from-yellow-400 to-orange-500 w-32 h-32 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border-4 border-white border-opacity-50"
+            >
+              <FaGift className="text-white text-5xl" />
+            </motion.div>
+            <motion.p
+              className="text-2xl font-semibold bg-white bg-opacity-20 backdrop-blur-lg rounded-full px-8 py-4 inline-block"
+              whileHover={{ scale: 1.1 }}
+            >
+              Click to open your gift! 💝
+            </motion.p>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {[
+              { 
+                icon: FaSpa, 
+                text: "Beautiful Flower", 
+                color: "from-green-400 to-emerald-500",
+                onClick: openFlowers
+              },
+              { 
+                icon: FaCandyCane, 
+                text: "Sweet Chocolate", 
+                color: "from-amber-500 to-orange-500",
+                onClick: () => {}
+              },
+              { 
+                icon: FaEnvelope, 
+                text: "A Love Letter", 
+                color: "from-blue-400 to-cyan-500",
+                onClick: openLoveLetter
+              },
+            ].map((gift, index) => (
+              <motion.div
+                key={gift.text}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 + index * 0.2 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -10 
+                }}
+                className={`bg-gradient-to-br ${gift.color} rounded-2xl p-6 text-center shadow-2xl border-2 border-white border-opacity-30 backdrop-blur-sm cursor-pointer`}
+                onClick={gift.onClick}
+              >
+                <motion.div
+                  animate={{
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: index * 0.5,
+                  }}
+                  className="text-4xl mb-4 text-white"
+                >
+                  <gift.icon />
+                </motion.div>
+                <p className="text-xl font-semibold">{gift.text}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </div>
+
+      <motion.footer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="mt-12 text-lg font-medium bg-white bg-opacity-20 backdrop-blur-lg rounded-full px-6 py-3"
+      >
+        Made with 💖 by Kasun 
+      </motion.footer>
+    </div>
+  );
+}
