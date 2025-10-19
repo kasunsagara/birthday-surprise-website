@@ -786,7 +786,7 @@ export default function App() {
               },
               { 
                 icon: FaEnvelope, 
-                text: "A Love Letter", 
+                text: "Love Letter", 
                 color: "from-blue-400 to-cyan-500",
                 onClick: openLoveLetter
               },
