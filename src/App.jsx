@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaGift, FaHeart, FaEnvelope, FaCandyCane, FaSpa, FaStar, FaTimes } from "react-icons/fa";
+import { FaGift, FaHeart, FaEnvelope, FaSpa, FaStar, FaTimes, FaWhatsapp, FaComments } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,6 +12,7 @@ export default function App() {
   const [fireworks, setFireworks] = useState([]);
   const [showFlowers, setShowFlowers] = useState(false);
   const [showLoveLetter, setShowLoveLetter] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -93,6 +94,14 @@ export default function App() {
 
   const openLoveLetter = () => {
     setShowLoveLetter(true);
+  };
+
+  const openContact = () => {
+    setShowContact(true);
+  };
+
+  const openWhatsApp = () => {
+    window.open('https://wa.me/94771670585?text=Happy%20Birthday%20My%20Love!%20💖', '_blank');
   };
 
   // Beautiful flower bouquet images
@@ -378,7 +387,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Love Letter Overlay - FIXED CLOSE BUTTON */}
+      {/* Love Letter Overlay */}
       <AnimatePresence>
         {showLoveLetter && (
           <motion.div
@@ -394,7 +403,6 @@ export default function App() {
               exit={{ scale: 0, y: 50 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
             >
-              {/* Close button - CLEARLY VISIBLE AND PROMINENT */}
               <motion.button
                 onClick={() => setShowLoveLetter(false)}
                 className="absolute top-4 right-4 text-white text-2xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
@@ -411,7 +419,6 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              {/* Love Letter Header */}
               <div className="text-center mb-6">
                 <motion.div
                   className="text-rose-600 text-4xl mb-2"
@@ -427,14 +434,12 @@ export default function App() {
                 <p className="text-rose-600 text-lg">On Your Special Day</p>
               </div>
 
-              {/* Love Letter Content */}
               <motion.div
                 className="bg-white rounded-2xl p-6 shadow-inner border border-rose-200 relative"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                {/* Handwritten style text */}
                 <div className="space-y-4 text-gray-800 leading-relaxed font-serif">
                   <motion.p
                     initial={{ x: -20, opacity: 0 }}
@@ -451,8 +456,7 @@ export default function App() {
                     transition={{ delay: 0.9 }}
                     className="text-lg"
                   >
-                    Happy Birthday to the most amazing person in my life! Today, as we celebrate your special day, 
-                    I want you to know how much you mean to me.
+                    Happy Birthday to my amazing person! You mean everything to me.
                   </motion.p>
 
                   <motion.p
@@ -461,9 +465,7 @@ export default function App() {
                     transition={{ delay: 1.1 }}
                     className="text-lg"
                   >
-                    From the moment I met you, my life has been filled with so much joy and happiness. 
-                    Your smile brightens my darkest days, your laughter is my favorite melody, 
-                    and your love is the greatest gift I've ever received.
+                    You've filled my life with joy. Your smile lights up my world, your laugh is my favorite sound, and your love means everything to me.
                   </motion.p>
 
                   <motion.p
@@ -472,8 +474,7 @@ export default function App() {
                     transition={{ delay: 1.3 }}
                     className="text-lg"
                   >
-                    You are not just my girlfriend - you are my best friend, my confidant, and my soulmate. 
-                    Every day with you feels like a beautiful dream that I never want to wake up from.
+                    You're my best friend and soulmate. Every day with you feels like a wonderful dream.
                   </motion.p>
 
                   <motion.p
@@ -482,9 +483,7 @@ export default function App() {
                     transition={{ delay: 1.5 }}
                     className="text-lg"
                   >
-                    On this special day, I wish you all the happiness in the world. May your life be filled with 
-                    love, laughter, and beautiful moments. May all your dreams come true, and may we continue 
-                    to create wonderful memories together.
+                    I wish you endless happiness and love. May all your dreams come true as we build beautiful memories together.
                   </motion.p>
 
                   <motion.p
@@ -493,8 +492,7 @@ export default function App() {
                     transition={{ delay: 1.7 }}
                     className="text-lg"
                   >
-                    Thank you for being you - beautiful inside and out. Thank you for loving me and for 
-                    being the incredible person that you are.
+                    Thank you for being beautiful inside and out, and for loving me.
                   </motion.p>
 
                   <motion.p
@@ -507,7 +505,6 @@ export default function App() {
                   </motion.p>
                 </div>
 
-                {/* Signature */}
                 <motion.div
                   className="mt-8 text-right"
                   initial={{ opacity: 0 }}
@@ -519,42 +516,106 @@ export default function App() {
                   <p className="text-rose-600 mt-1">💖 Your Loving Boyfriend 💖</p>
                 </motion.div>
               </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-              {/* Floating Hearts in Letter */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {[...Array(8)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute text-rose-300 opacity-40"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                    animate={{
-                      y: [0, -10, 0],
-                      x: [0, Math.random() * 5 - 2.5, 0],
-                      rotate: [0, 180, 360],
-                    }}
-                    transition={{
-                      duration: 3 + Math.random() * 2,
-                      repeat: Infinity,
-                      delay: Math.random() * 2,
-                    }}
-                  >
-                    <FaHeart size={12 + Math.random() * 8} />
-                  </motion.div>
-                ))}
+      {/* Contact Info Overlay */}
+      <AnimatePresence>
+        {showContact && (
+          <motion.div
+            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-gradient-to-br from-green-500 to-green-600 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl"
+              initial={{ scale: 0, y: 50, rotate: -5 }}
+              animate={{ scale: 1, y: 0, rotate: 0 }}
+              exit={{ scale: 0, y: 50 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            >
+              <motion.button
+                onClick={() => setShowContact(false)}
+                className="absolute top-4 right-4 text-white text-2xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
+                whileHover={{ 
+                  scale: 1.2, 
+                  backgroundColor: "#ef4444",
+                  rotate: 90
+                }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: 0.3, type: "spring" }}
+              >
+                <FaTimes />
+              </motion.button>
+
+              <div className="text-center mb-6">
+                <motion.div
+                  className="text-white text-4xl mb-2"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  📱
+                </motion.div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-serif">
+                  Let's Connect!
+                </h2>
+                <p className="text-white/80 text-lg">Always here for you 💚</p>
               </div>
 
-              {/* Close Instruction Text */}
               <motion.div
-                className="text-center mt-4"
+                className="bg-white/20 rounded-2xl p-6 border border-white/30 relative backdrop-blur-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 2.5 }}
+                transition={{ delay: 0.5 }}
               >
-                <p className="text-rose-600 text-sm font-semibold">
-                  Click the ❌ button to close this letter
+                <div className="space-y-4 text-white leading-relaxed">
+                  <motion.div
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.7 }}
+                    className="text-center"
+                  >
+                    <p className="text-xl font-semibold mb-4">Chat with me anytime!</p>
+                    <p className="text-lg mb-2">I'm always just a message away</p>
+                    <p className="text-white/80">Let's make your birthday even more special! 🎉</p>
+                  </motion.div>
+
+                  <motion.div
+                    className="mt-6 text-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.1 }}
+                  >
+                    <motion.button
+                      onClick={openWhatsApp}
+                      className="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-green-50 transition-colors flex items-center justify-center gap-3 mx-auto"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaWhatsapp className="text-xl" />
+                      Message Me on WhatsApp
+                    </motion.button>
+                    <p className="text-white/70 text-sm mt-3">
+                      Click to start a conversation with me! 💬
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="text-center mt-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 }}
+              >
+                <p className="text-white/80 text-sm">
+                  I'm waiting to hear from you, my love! 💖
                 </p>
               </motion.div>
             </motion.div>
@@ -724,17 +785,17 @@ export default function App() {
                 onClick: openFlowers
               },
               { 
-                icon: FaCandyCane, 
-                text: "Sweet Chocolate", 
-                color: "from-amber-500 to-orange-500",
-                onClick: () => {}
-              },
-              { 
                 icon: FaEnvelope, 
                 text: "A Love Letter", 
                 color: "from-blue-400 to-cyan-500",
                 onClick: openLoveLetter
               },
+              { 
+                icon: FaComments, 
+                text: "Talk to me", 
+                color: "from-red-400 to-orange-500",
+                onClick: openContact
+              },              
             ].map((gift, index) => (
               <motion.div
                 key={gift.text}
