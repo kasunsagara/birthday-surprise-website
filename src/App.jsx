@@ -4,7 +4,7 @@ import { GiPartyPopper } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  const birthday = new Date("2025-09-20T00:00:00"); 
+  const birthday = new Date("2025-01-20T00:00:00"); 
   const [timeLeft, setTimeLeft] = useState({});
   const [showSurprise, setShowSurprise] = useState(false); 
   const [showGifts, setShowGifts] = useState(false);
@@ -507,7 +507,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Contact Info Overlay */}
+      {/* Contact Info Overlay - ලොකු කලා */}
       <AnimatePresence>
         {showContact && (
           <motion.div
@@ -517,7 +517,7 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-6 max-w-sm w-full border-4 border-white relative overflow-hidden shadow-2xl"
+              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full border-4 border-white relative overflow-hidden shadow-2xl"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -525,7 +525,7 @@ export default function App() {
             >
               <motion.button
                 onClick={() => setShowContact(false)}
-                className="absolute top-3 right-3 text-white text-xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-10 h-10 flex items-center justify-center shadow-2xl border-2 border-white"
+                className="absolute top-4 right-4 text-white text-2xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
                 whileHover={{ 
                   scale: 1.2, 
                   backgroundColor: "#ef4444",
@@ -539,54 +539,54 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              <div className="text-center mb-4">
+              <div className="text-center mb-6">
                 <motion.div
-                  className="text-white text-3xl mb-2"
+                  className="text-white text-4xl mb-3"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.3 }}
                 >
                   📱
                 </motion.div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 font-serif">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 font-serif">
                   Let's Connect!
                 </h2>
-                <p className="text-white/80 text-sm">Always here for you 💚</p>
+                <p className="text-white/80 text-lg">Always here for you 💚</p>
               </div>
 
               <motion.div
-                className="bg-white/20 rounded-2xl p-4 border border-white/30 relative backdrop-blur-sm"
+                className="bg-white/20 rounded-2xl p-6 border border-white/30 relative backdrop-blur-sm mb-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="space-y-3 text-white leading-relaxed text-center">
+                <div className="space-y-4 text-white leading-relaxed text-center">
                   <motion.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.7 }}
                   >
-                    <p className="text-lg font-semibold mb-2">Chat with me anytime!</p>
-                    <p className="text-sm mb-1">I'm always just a message away</p>
-                    <p className="text-white/80 text-xs">Let's make your birthday even more special! 🎉</p>
+                    <p className="text-xl font-semibold mb-3">Chat with me anytime!</p>
+                    <p className="text-lg mb-2">I'm always just a message away</p>
+                    <p className="text-white/80">Let's make your birthday even more special! 🎉</p>
                   </motion.div>
 
                   <motion.div
-                    className="mt-4"
+                    className="mt-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.1 }}
                   >
                     <motion.button
                       onClick={openWhatsApp}
-                      className="bg-white text-green-600 px-6 py-3 rounded-full font-bold text-base shadow-2xl hover:bg-green-50 transition-colors flex items-center justify-center gap-2 mx-auto w-full"
+                      className="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-green-50 transition-colors flex items-center justify-center gap-3 mx-auto w-full"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <FaWhatsapp className="text-lg" />
+                      <FaWhatsapp className="text-xl" />
                       Message Me on WhatsApp
                     </motion.button>
-                    <p className="text-white/70 text-xs mt-2">
+                    <p className="text-white/70 text-sm mt-3">
                       Click to start a conversation with me! 💬
                     </p>
                   </motion.div>
@@ -594,12 +594,12 @@ export default function App() {
               </motion.div>
 
               <motion.div
-                className="text-center mt-4"
+                className="text-center mt-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 }}
               >
-                <p className="text-white/80 text-xs">
+                <p className="text-white/80 text-base">
                   I'm waiting to hear from you, my love! 💖
                 </p>
               </motion.div>
