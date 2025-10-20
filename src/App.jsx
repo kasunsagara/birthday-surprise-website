@@ -4,7 +4,7 @@ import { GiPartyPopper } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  const birthday = new Date("2025-11-20T00:00:00"); 
+  const birthday = new Date("2025-01-20T00:00:00"); 
   const [timeLeft, setTimeLeft] = useState({});
   const [showSurprise, setShowSurprise] = useState(false); 
   const [showGifts, setShowGifts] = useState(false);
@@ -711,7 +711,7 @@ export default function App() {
           transition={{ delay: 0.2 }}
         >
           <FaHeart className="text-red-300" />
-          Happy Birthday, My Love! 💖
+          Happy Birthday, My Love Chooti! 💖
           <FaHeart className="text-red-300" />
         </motion.h1>
 
