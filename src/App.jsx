@@ -101,7 +101,7 @@ export default function App() {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/94771670585?text=Happy%20Birthday%20My%20Love!%20💖', '_blank');
+    window.open('https://wa.me/94771670585', '_blank');
   };
 
   // Beautiful flower bouquet images
