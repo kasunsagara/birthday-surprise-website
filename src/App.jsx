@@ -397,7 +397,7 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl mt-36 mb-12"
+              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl mt-36 mb-12 md:mt-20 md:mb-8"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
