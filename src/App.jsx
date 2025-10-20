@@ -4,7 +4,7 @@ import { GiPartyPopper } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  const birthday = new Date("2025-11-20T00:00:00"); 
+  const birthday = new Date("2025-01-20T00:00:00"); 
   const [timeLeft, setTimeLeft] = useState({});
   const [showSurprise, setShowSurprise] = useState(false); 
   const [showGifts, setShowGifts] = useState(false);
@@ -246,7 +246,7 @@ export default function App() {
           </div>
 
           <p className="text-center text-lg font-medium">
-            Counting down to October 20, 2025 ⏰
+            Counting down to November 20, 2025 ⏰
           </p>
         </motion.div>
 
@@ -276,13 +276,13 @@ export default function App() {
       <AnimatePresence>
         {showFlowers && (
           <motion.div
-            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 overflow-y-auto"
+            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-blue-600 to-cyan-700 rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden shadow-2xl mt-36 mb-12"
+              className="bg-gradient-to-br from-blue-600 to-cyan-700 rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
               initial={{ scale: 0, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -301,7 +301,7 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              <div className="text-center mb-6">
+              <div className="text-center mb-6 pt-4">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">
                   💐 For My Beautiful Girlfriend 💐
                 </h2>
@@ -337,7 +337,7 @@ export default function App() {
 
               {/* Romantic Message */}
               <motion.div
-                className="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20"
+                className="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20 mb-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -391,13 +391,13 @@ export default function App() {
       <AnimatePresence>
         {showLoveLetter && (
           <motion.div
-            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 overflow-y-auto"
+            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl mt-36 mb-12"
+              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -419,7 +419,7 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              <div className="text-center mb-6">
+              <div className="text-center mb-6 pt-4">
                 <motion.div
                   className="text-rose-600 text-4xl mb-2"
                   initial={{ scale: 0 }}
@@ -435,7 +435,7 @@ export default function App() {
               </div>
 
               <motion.div
-                className="bg-white rounded-2xl p-6 shadow-inner border border-rose-200 relative"
+                className="bg-white rounded-2xl p-6 shadow-inner border border-rose-200 relative mb-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -525,13 +525,13 @@ export default function App() {
       <AnimatePresence>
         {showContact && (
           <motion.div
-            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 overflow-y-auto"
+            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl mt-36 mb-12"
+              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -553,7 +553,7 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              <div className="text-center mb-6">
+              <div className="text-center mb-6 pt-4">
                 <motion.div
                   className="text-white text-4xl mb-2"
                   initial={{ scale: 0 }}
@@ -569,7 +569,7 @@ export default function App() {
               </div>
 
               <motion.div
-                className="bg-white/20 rounded-2xl p-6 border border-white/30 relative backdrop-blur-sm"
+                className="bg-white/20 rounded-2xl p-6 border border-white/30 relative backdrop-blur-sm mb-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
