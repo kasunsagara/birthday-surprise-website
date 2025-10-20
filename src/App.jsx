@@ -4,7 +4,7 @@ import { GiPartyPopper } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  const birthday = new Date("2025-11-20T00:00:00");
+  const birthday = new Date("2025-10-20T13:27:00");
   const [timeLeft, setTimeLeft] = useState({});
   const [showSurprise, setShowSurprise] = useState(false);
   const [showGifts, setShowGifts] = useState(false);
@@ -246,7 +246,7 @@ export default function App() {
           </div>
 
           <p className="text-center text-lg font-medium">
-            Counting down to October 19, 2025 ⏰
+            Counting down to October 20, 2025 ⏰
           </p>
         </motion.div>
 
@@ -276,13 +276,13 @@ export default function App() {
       <AnimatePresence>
         {showFlowers && (
           <motion.div
-            className="absolute inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center p-4"
+            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white bg-opacity-10 backdrop-blur-2xl rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden"
+              className="bg-gradient-to-br from-blue-600 to-cyan-700 rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden shadow-2xl mt-36 mb-12"
               initial={{ scale: 0, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -391,13 +391,13 @@ export default function App() {
       <AnimatePresence>
         {showLoveLetter && (
           <motion.div
-            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
+            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-amber-50 bg-opacity-95 backdrop-blur-xl rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl"
+              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl mt-36 mb-12"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -428,10 +428,10 @@ export default function App() {
                 >
                   💌
                 </motion.div>
-                <h2 className="text-3xl md:text-4xl font-bold text-rose-800 mb-2 font-serif">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-serif">
                   To My Dearest Love
                 </h2>
-                <p className="text-rose-600 text-lg">On Your Special Day</p>
+                <p className="text-white text-lg">On Your Special Day</p>
               </div>
 
               <motion.div
@@ -525,13 +525,13 @@ export default function App() {
       <AnimatePresence>
         {showContact && (
           <motion.div
-            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
+            className="absolute inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-green-500 to-green-600 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl"
+              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl mt-36 mb-12"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -781,19 +781,19 @@ export default function App() {
               { 
                 icon: FaSpa, 
                 text: "Beautiful Flower", 
-                color: "from-green-400 to-emerald-500",
+                color: "from-blue-400 to-cyan-500",
                 onClick: openFlowers
               },
               { 
                 icon: FaEnvelope, 
                 text: "Love Letter", 
-                color: "from-blue-400 to-cyan-500",
+                color: "from-red-400 to-orange-500",
                 onClick: openLoveLetter
               },
               { 
                 icon: FaComments, 
                 text: "Talk to me", 
-                color: "from-red-400 to-orange-500",
+                color: "from-green-400 to-emerald-500",
                 onClick: openContact
               },              
             ].map((gift, index) => (
