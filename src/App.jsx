@@ -282,7 +282,7 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-blue-600 to-cyan-700 rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden shadow-2xl mt-36 mb-12"
+              className="bg-gradient-to-br from-blue-600 to-cyan-700 rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden shadow-2xl mt-20 mb-8 sm:mt-28 sm:mb-10 md:mt-36 md:mb-12"
               initial={{ scale: 0, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -397,7 +397,7 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl mt-36 mb-12"
+              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl mt-20 mb-8 sm:mt-28 sm:mb-10 md:mt-36 md:mb-12"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -531,7 +531,7 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl mt-36 mb-12"
+              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl mt-20 mb-8 sm:mt-28 sm:mb-10 md:mt-36 md:mb-12"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
