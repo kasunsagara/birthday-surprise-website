@@ -4,7 +4,7 @@ import { GiPartyPopper } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  const birthday = new Date("2025-01-20T00:00:00"); 
+  const birthday = new Date("2025-09-20T00:00:00"); 
   const [timeLeft, setTimeLeft] = useState({});
   const [showSurprise, setShowSurprise] = useState(false); 
   const [showGifts, setShowGifts] = useState(false);
@@ -276,13 +276,13 @@ export default function App() {
       <AnimatePresence>
         {showFlowers && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-blue-600 to-cyan-700 rounded-3xl p-6 max-w-4xl w-full mx-4 border-2 border-white border-opacity-20 relative overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
+              className="bg-gradient-to-br from-blue-600 to-cyan-700 rounded-3xl p-6 max-w-2xl w-full border-2 border-white border-opacity-20 relative overflow-hidden shadow-2xl"
               initial={{ scale: 0, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -291,7 +291,7 @@ export default function App() {
               {/* Close button - CLEARLY VISIBLE */}
               <motion.button
                 onClick={() => setShowFlowers(false)}
-                className="absolute top-4 right-4 text-white text-2xl hover:text-red-300 transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
+                className="absolute top-4 right-4 text-white text-2xl hover:text-red-300 transition-colors z-50 bg-red-500 rounded-full w-10 h-10 flex items-center justify-center shadow-2xl border-2 border-white"
                 whileHover={{ scale: 1.2, backgroundColor: "#ef4444" }}
                 whileTap={{ scale: 0.9 }}
                 initial={{ scale: 0 }}
@@ -301,18 +301,18 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              <div className="text-center mb-6 pt-4">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">
+              <div className="text-center mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold mb-2 text-white drop-shadow-lg">
                   💐 For My Beautiful Girlfriend 💐
                 </h2>
-                <p className="text-xl md:text-2xl text-white/90 mb-2">
+                <p className="text-lg md:text-xl text-white/90">
                   These flowers are just a small reflection of how beautiful you are
                 </p>
               </div>
 
               {/* Main Flower Bouquet */}
               <motion.div
-                className="relative mb-6 rounded-2xl overflow-hidden"
+                className="relative mb-4 rounded-2xl overflow-hidden"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
@@ -320,16 +320,16 @@ export default function App() {
                 <img 
                   src={flowerImage[0]}
                   alt="Beautiful Flower Bouquet"
-                  className="w-full h-64 md:h-96 object-cover rounded-2xl shadow-2xl"
+                  className="w-full h-48 md:h-64 object-cover rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl" />
                 <motion.div
-                  className="absolute bottom-4 left-4 right-4 text-center"
+                  className="absolute bottom-3 left-3 right-3 text-center"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <p className="text-white text-lg md:text-xl font-semibold drop-shadow-lg">
+                  <p className="text-white text-base md:text-lg font-semibold drop-shadow-lg">
                     "Every petal reminds me of your beauty" 🌸
                   </p>
                 </motion.div>
@@ -337,18 +337,18 @@ export default function App() {
 
               {/* Romantic Message */}
               <motion.div
-                className="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20 mb-4"
+                className="bg-white bg-opacity-10 rounded-2xl p-4 border border-white border-opacity-20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
               >
-                <p className="text-center text-lg md:text-xl text-white leading-relaxed italic">
+                <p className="text-center text-base md:text-lg text-white leading-relaxed italic">
                   "Just like these beautiful flowers, you bring color and happiness into my life. 
                   Every moment with you is like a blooming garden full of love and joy. 
                   Happy Birthday to the most beautiful flower in my life! 💖"
                 </p>
                 <motion.p
-                  className="text-center text-xl font-semibold mt-4 text-white"
+                  className="text-center text-lg font-semibold mt-3 text-white"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2 }}
@@ -359,7 +359,7 @@ export default function App() {
 
               {/* Floating Hearts */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {[...Array(10)].map((_, i) => (
+                {[...Array(8)].map((_, i) => (
                   <motion.div
                     key={i}
                     className="absolute text-red-300"
@@ -378,7 +378,7 @@ export default function App() {
                       delay: Math.random() * 2,
                     }}
                   >
-                    <FaHeart size={20 + Math.random() * 10} />
+                    <FaHeart size={16 + Math.random() * 8} />
                   </motion.div>
                 ))}
               </div>
@@ -391,13 +391,13 @@ export default function App() {
       <AnimatePresence>
         {showLoveLetter && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-8 max-w-2xl w-full mx-4 border-4 border-rose-200 relative overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
+              className="bg-gradient-to-br from-red-600 to-orange-700 rounded-3xl p-6 max-w-lg w-full border-4 border-rose-200 relative overflow-hidden shadow-2xl"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -405,7 +405,7 @@ export default function App() {
             >
               <motion.button
                 onClick={() => setShowLoveLetter(false)}
-                className="absolute top-4 right-4 text-white text-2xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
+                className="absolute top-3 right-3 text-white text-xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-10 h-10 flex items-center justify-center shadow-2xl border-2 border-white"
                 whileHover={{ 
                   scale: 1.2, 
                   backgroundColor: "#ef4444",
@@ -419,33 +419,32 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              <div className="text-center mb-6 pt-4">
+              <div className="text-center mb-4">
                 <motion.div
-                  className="text-rose-600 text-4xl mb-2"
+                  className="text-rose-600 text-3xl mb-2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.3 }}
                 >
                   💌
                 </motion.div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-serif">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 font-serif">
                   To My Dearest Love
                 </h2>
-                <p className="text-white text-lg">On Your Special Day</p>
+                <p className="text-white text-sm">On Your Special Day</p>
               </div>
 
               <motion.div
-                className="bg-white rounded-2xl p-6 shadow-inner border border-rose-200 relative mb-4"
+                className="bg-white rounded-2xl p-4 shadow-inner border border-rose-200 relative"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="space-y-4 text-gray-800 leading-relaxed font-serif">
+                <div className="space-y-3 text-gray-800 leading-relaxed font-serif text-sm md:text-base">
                   <motion.p
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.7 }}
-                    className="text-lg"
                   >
                     My Dearest,
                   </motion.p>
@@ -454,7 +453,6 @@ export default function App() {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.9 }}
-                    className="text-lg"
                   >
                     Happy Birthday to my amazing person! You mean everything to me.
                   </motion.p>
@@ -463,7 +461,6 @@ export default function App() {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 1.1 }}
-                    className="text-lg"
                   >
                     You've filled my life with joy. Your smile lights up my world, your laugh is my favorite sound, and your love means everything to me.
                   </motion.p>
@@ -472,7 +469,6 @@ export default function App() {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 1.3 }}
-                    className="text-lg"
                   >
                     You're my best friend and soulmate. Every day with you feels like a wonderful dream.
                   </motion.p>
@@ -481,7 +477,6 @@ export default function App() {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 1.5 }}
-                    className="text-lg"
                   >
                     I wish you endless happiness and love. May all your dreams come true as we build beautiful memories together.
                   </motion.p>
@@ -490,30 +485,21 @@ export default function App() {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 1.7 }}
-                    className="text-lg"
-                  >
-                    Thank you for being beautiful inside and out, and for loving me.
-                  </motion.p>
-
-                  <motion.p
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 1.9 }}
-                    className="text-lg font-semibold text-rose-700"
+                    className="font-semibold text-rose-700"
                   >
                     Forever and always, my love will be with you.
                   </motion.p>
                 </div>
 
                 <motion.div
-                  className="mt-8 text-right"
+                  className="mt-4 text-right"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 2.1 }}
                 >
-                  <p className="text-xl font-bold text-rose-800 font-cursive">With all my love,</p>
-                  <p className="text-2xl font-bold text-rose-900 mt-2 font-cursive">Kasun</p>
-                  <p className="text-rose-600 mt-1">💖 Your Loving Boyfriend 💖</p>
+                  <p className="text-lg font-bold text-rose-800 font-cursive">With all my love,</p>
+                  <p className="text-xl font-bold text-rose-900 mt-1 font-cursive">Kasun</p>
+                  <p className="text-rose-600 text-sm">💖 Your Loving Boyfriend 💖</p>
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -525,13 +511,13 @@ export default function App() {
       <AnimatePresence>
         {showContact && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-8 max-w-md w-full mx-4 border-4 border-white relative overflow-hidden shadow-2xl"
+              className="bg-gradient-to-br from-green-600 to-emerald-700 backdrop-blur-xl rounded-3xl p-6 max-w-sm w-full border-4 border-white relative overflow-hidden shadow-2xl"
               initial={{ scale: 0, y: 50, rotate: -5 }}
               animate={{ scale: 1, y: 0, rotate: 0 }}
               exit={{ scale: 0, y: 50 }}
@@ -539,7 +525,7 @@ export default function App() {
             >
               <motion.button
                 onClick={() => setShowContact(false)}
-                className="absolute top-4 right-4 text-white text-2xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl border-2 border-white"
+                className="absolute top-3 right-3 text-white text-xl hover:text-white transition-colors z-50 bg-red-500 rounded-full w-10 h-10 flex items-center justify-center shadow-2xl border-2 border-white"
                 whileHover={{ 
                   scale: 1.2, 
                   backgroundColor: "#ef4444",
@@ -553,55 +539,54 @@ export default function App() {
                 <FaTimes />
               </motion.button>
 
-              <div className="text-center mb-6 pt-4">
+              <div className="text-center mb-4">
                 <motion.div
-                  className="text-white text-4xl mb-2"
+                  className="text-white text-3xl mb-2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.3 }}
                 >
                   📱
                 </motion.div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-serif">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 font-serif">
                   Let's Connect!
                 </h2>
-                <p className="text-white/80 text-lg">Always here for you 💚</p>
+                <p className="text-white/80 text-sm">Always here for you 💚</p>
               </div>
 
               <motion.div
-                className="bg-white/20 rounded-2xl p-6 border border-white/30 relative backdrop-blur-sm mb-4"
+                className="bg-white/20 rounded-2xl p-4 border border-white/30 relative backdrop-blur-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="space-y-4 text-white leading-relaxed">
+                <div className="space-y-3 text-white leading-relaxed text-center">
                   <motion.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.7 }}
-                    className="text-center"
                   >
-                    <p className="text-xl font-semibold mb-4">Chat with me anytime!</p>
-                    <p className="text-lg mb-2">I'm always just a message away</p>
-                    <p className="text-white/80">Let's make your birthday even more special! 🎉</p>
+                    <p className="text-lg font-semibold mb-2">Chat with me anytime!</p>
+                    <p className="text-sm mb-1">I'm always just a message away</p>
+                    <p className="text-white/80 text-xs">Let's make your birthday even more special! 🎉</p>
                   </motion.div>
 
                   <motion.div
-                    className="mt-6 text-center"
+                    className="mt-4"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.1 }}
                   >
                     <motion.button
                       onClick={openWhatsApp}
-                      className="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-green-50 transition-colors flex items-center justify-center gap-3 mx-auto"
+                      className="bg-white text-green-600 px-6 py-3 rounded-full font-bold text-base shadow-2xl hover:bg-green-50 transition-colors flex items-center justify-center gap-2 mx-auto w-full"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <FaWhatsapp className="text-xl" />
+                      <FaWhatsapp className="text-lg" />
                       Message Me on WhatsApp
                     </motion.button>
-                    <p className="text-white/70 text-sm mt-3">
+                    <p className="text-white/70 text-xs mt-2">
                       Click to start a conversation with me! 💬
                     </p>
                   </motion.div>
@@ -609,12 +594,12 @@ export default function App() {
               </motion.div>
 
               <motion.div
-                className="text-center mt-6"
+                className="text-center mt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 }}
               >
-                <p className="text-white/80 text-sm">
+                <p className="text-white/80 text-xs">
                   I'm waiting to hear from you, my love! 💖
                 </p>
               </motion.div>
