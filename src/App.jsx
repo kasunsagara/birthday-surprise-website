@@ -4,7 +4,7 @@ import { GiPartyPopper } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  const birthday = new Date("2025-11-16T22:58:00"); 
+  const birthday = new Date("2025-11-20T00:00:00"); 
   const [timeLeft, setTimeLeft] = useState({});
   const [showSurprise, setShowSurprise] = useState(false); 
   const [showGifts, setShowGifts] = useState(false);
