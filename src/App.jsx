@@ -272,7 +272,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-400 via-red-400 to-pink-500 flex flex-col items-center justify-center text-white p-6 relative overflow-hidden">
       
-      {/* Flowers Overlay with Real Photos */}
+      {/* Flowers Overlay */}
       <AnimatePresence>
         {showFlowers && (
           <motion.div
@@ -507,7 +507,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Contact Info Overlay - ලොකු කලා */}
+      {/* Contact Info Overlay */}
       <AnimatePresence>
         {showContact && (
           <motion.div
