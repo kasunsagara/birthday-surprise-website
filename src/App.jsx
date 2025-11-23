@@ -12,7 +12,7 @@ export default function App() {
   const [fireworks, setFireworks] = useState([]);
   const [showFlowers, setShowFlowers] = useState(false);
   const [showLoveLetter, setShowLoveLetter] = useState(false);
-  const [showContact, setShowContact] = useState(false);
+  const [showContact, setShowContact] = useState(false); 
 
   useEffect(() => {
     const timer = setInterval(() => {
